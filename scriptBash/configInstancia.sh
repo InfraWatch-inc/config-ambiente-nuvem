@@ -60,29 +60,29 @@ sudo netfilter-persistent save
 sudo netfilter-persistent reload
 
 # configurando MYSQL
-echo -e "\033[41;1;37m Criando e estruturando BD PlcVision... \033[0m"
-sudo mysql < src/database/modelagemNova.sql
+echo -e "\033[41;1;37m Criando e estruturando BD infrawatch... \033[0m"
+sudo mysql < InfraWatch-inc/database/script.sql
 
 # Criar usuários MYSQL
 echo -e "\033[41;1;37m Criando Usuários do Banco... \033[0m"
-sudo mysql -e"CREATE USER 'plc_root'@'%' IDENTIFIED BY 'Urubu100#';"
-sudo mysql -e"GRANT ALL PRIVILEGES ON PlcVision.* TO 'plc_root'@'%';"
+sudo mysql -e"CREATE USER 'infra_root'@'%' IDENTIFIED BY 'Urubu100#';"
+sudo mysql -e"GRANT ALL PRIVILEGES ON infrawatch.* TO 'plc_root'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
 
 sudo mysql -e"CREATE USER 'insert_user'@'%' IDENTIFIED BY 'Urubu100#';"
-sudo mysql -e"GRANT INSERT ON PlcVision.* TO 'insert_user'@'%';"
+sudo mysql -e"GRANT INSERT ON infrawatch.* TO 'insert_user'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
 
 sudo mysql -e"CREATE USER 'select_user'@'%' IDENTIFIED BY 'Urubu100#';"
-sudo mysql -e"GRANT SELECT ON PlcVision.* TO 'select_user'@'%';"
+sudo mysql -e"GRANT SELECT ON infrawatch.* TO 'select_user'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
 
 sudo mysql -e"CREATE USER 'update_user'@'%' IDENTIFIED BY 'Urubu100#';"
-sudo mysql -e"GRANT UPDATE ON PlcVision.* TO 'update_user'@'%';"
+sudo mysql -e"GRANT UPDATE ON infrawatch.* TO 'update_user'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
 
 sudo mysql -e"CREATE USER 'delete_user'@'%' IDENTIFIED BY 'Urubu100#';"
-sudo mysql -e"GRANT DELETE ON PlcVision.* TO 'delete_user'@'%';"
+sudo mysql -e"GRANT DELETE ON infrawatch.* TO 'delete_user'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
 
 # configurar e rodar projeto node
