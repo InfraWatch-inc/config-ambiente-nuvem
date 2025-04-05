@@ -61,12 +61,12 @@ sudo netfilter-persistent reload
 
 # configurando MYSQL
 echo -e "\033[41;1;37m Criando e estruturando BD infrawatch... \033[0m"
-sudo mysql < InfraWatch-inc/database/script.sql
+sudo mysql < ~/InfraWatch-inc/database/script.sql
 
 # Criar usuários MYSQL
 echo -e "\033[41;1;37m Criando Usuários do Banco... \033[0m"
 sudo mysql -e"CREATE USER 'infra_root'@'%' IDENTIFIED BY 'Urubu100#';"
-sudo mysql -e"GRANT ALL PRIVILEGES ON infrawatch.* TO 'plc_root'@'%';"
+sudo mysql -e"GRANT ALL PRIVILEGES ON infrawatch.* TO 'infra_root'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
 
 sudo mysql -e"CREATE USER 'insert_user'@'%' IDENTIFIED BY 'Urubu100#';"
@@ -84,6 +84,10 @@ sudo mysql -e"FLUSH PRIVILEGES;"
 sudo mysql -e"CREATE USER 'delete_user'@'%' IDENTIFIED BY 'Urubu100#';"
 sudo mysql -e"GRANT DELETE ON infrawatch.* TO 'delete_user'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
+
+# Acessando a pasta da aplicação web
+echo -e "\033[41;1;37m Acessando a pasta do web-data-viz... \033[0m"
+cd web-data-viz
 
 # configurar e rodar projeto node
 echo -e "\033[41;1;37m Configurando e inicializando web-data-viz... \033[0m"
