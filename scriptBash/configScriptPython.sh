@@ -77,11 +77,11 @@ sudo apt install -qq -y python3-virtualenv
 
 # Criar virtualenv
 echo -e "\033[41;1;37m Criando Virtualenv... \033[0m"
-python3 -m virtualenv InfraWatch-inc/scripts-client/script_captura/env
+python3 -m virtualenv Script/scripts-client/script_captura/env
 
 # Iniciando ambiente virtual
 echo -e "\033[41;1;37m Iniciar Ambiente Virtual... \033[0m"
-source InfraWatch-inc/scripts-client/script_captura/env/bin/activate
+source Script/scripts-client/script_captura/env/bin/activate
 
 # Instalar bibliotecas Python necessárias
 echo -e "\033[41;1;37m Instalando bibliotecas Python... \033[0m"
@@ -89,5 +89,5 @@ pip3 install --quiet --no-input psutil==7.0.0 mysql-connector-python==9.2.0
 
 # rodar o script python
 echo -e "\033[41;1;37m Rondando Script Python... \033[0m"
-chmod 777 ./InfraWatch-inc/scripts-client/script_captura/script_captura_adaptado.py
-python3 ./InfraWatch-inc/scripts-client/script_captura/script_captura_adaptado.py
+chmod 777 Script/scripts-client/script_captura/script_captura_adaptado.py
+python3 Script/scripts-client/script_captura/script_captura_adaptado.py
