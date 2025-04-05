@@ -40,7 +40,7 @@ source Scripts/env/bin/activate
 
 # Instalar bibliotecas Python necessárias
 echo -e "\033[41;1;37m Instalando bibliotecas Python... \033[0m"
-pip3 install --quiet --no-input psutil==7.0.0 mysql-connector-python==9.2.0
+pip3 install --quiet --no-input psutil==7.0.0 mysql-connector-python==9.2.0 unidecode==1.3.8 pynvml==12.0.0 GPUtil==1.4.0  
 
 # instalando mysql
 echo -e "\033[41;1;37m Instalando MYSQL Server... \033[0m"

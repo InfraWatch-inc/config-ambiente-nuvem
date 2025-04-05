@@ -5,6 +5,7 @@
 # da permissao de chmod +x configScriptPython.sh
 # executa ele ./configScriptPython.sh
 # se nn executar e vc enviou um arquivo cujo a origem era de um pc windows, execute estes comandos e rode novamente: sudo apt update | sudo apt install dos2unix | dos2unix configScriptPython.sh
+# -e Sequências de Escape, permite formatar saída de texto.
 
 # os q's são de quiet (silencio) para mostrar menos texto (por mais q monstre uma porrada ainda assim)
 # e os y's são para não ficar fazendo perguntas no meio dos comandos
@@ -17,8 +18,6 @@ sudo apt upgrade -qq -y
 # clonar repositório 
 echo -e "\033[41;1;37m Clonando Repositório... \033[0m"
 git clone --quiet https://github.com/InfraWatch-inc/scripts-client.git
-git clone --quiet https://github.com/InfraWatch-inc/java.git
-git clone --quiet https://github.com/InfraWatch-inc/database.git
 
 # instalando mysql
 echo -e "\033[41;1;37m Instalando MYSQL Server... \033[0m"
