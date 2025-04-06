@@ -77,17 +77,17 @@ sudo apt install -qq -y python3-virtualenv
 
 # Criar virtualenv
 echo -e "\033[41;1;37m Criando Virtualenv... \033[0m"
-python3 -m virtualenv Script/scripts-client/script_captura/env
+python3 -m virtualenv env/
 
 # Iniciando ambiente virtual
 echo -e "\033[41;1;37m Iniciar Ambiente Virtual... \033[0m"
-source Script/scripts-client/script_captura/env/bin/activate
+source env/bin/activate
 
 # Instalar bibliotecas Python necessárias
 echo -e "\033[41;1;37m Instalando bibliotecas Python... \033[0m"
-pip3 install --quiet --no-input psutil==7.0.0 mysql-connector-python==9.2.0
+pip3 install --quiet --no-input psutil==7.0.0 mysql-connector-python==9.2.0 unidecode==1.3.8 pynvml==12.0.0 GPUtil==1.4.0
 
 # rodar o script python
 echo -e "\033[41;1;37m Rondando Script Python... \033[0m"
-chmod 777 Script/scripts-client/script_captura/script_captura_adaptado.py
-python3 Script/scripts-client/script_captura/script_captura_adaptado.py
+chmod 777 ./scripts-client/script_captura/script_captura_adaptado.py
+python3 ./scripts-client/script_captura/script_captura_adaptado.py
