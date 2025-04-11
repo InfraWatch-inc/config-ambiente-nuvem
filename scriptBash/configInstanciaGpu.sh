@@ -39,7 +39,7 @@ source env/bin/activate
 
 # Instalar bibliotecas Python necessárias
 echo -e "\033[41;1;37m Instalando bibliotecas Python... \033[0m"
-pip3 install --quiet --no-input requirements.txt
+pip3 install --quiet --no-input script_captura/requirements.txt
 
 # 
 blender -b cycles_benchmark_230.blend --python use_gpu.py -o //frame_ -F PNG -f 1
