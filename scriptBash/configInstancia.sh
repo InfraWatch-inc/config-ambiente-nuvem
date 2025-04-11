@@ -22,26 +22,6 @@ sudo apt upgrade -qq -y
 echo -e "\033[41;1;37m  Instalando NodeJS... \033[0m" # formatacao de texto vermelho pra deixar destacado
 sudo apt install -qq -y nodejs npm
 
-# Instalar pip do Python 
-echo -e "\033[41;1;37m Instalando Python e Pip... \033[0m"
-sudo apt install -qq -y python3-pip
-
-# Instalar virtualenv 
-echo -e "\033[41;1;37m Instalando Virtualenv... \033[0m"
-sudo apt install -qq -y python3-virtualenv
-
-# Criar virtualenv
-echo -e "\033[41;1;37m Criando Virtualenv... \033[0m"
-python3 -m virtualenv Scripts/env
-
-# Iniciando ambiente virtual
-echo -e "\033[41;1;37m Iniciar Ambiente Virtual... \033[0m"
-source Scripts/env/bin/activate
-
-# Instalar bibliotecas Python necessárias
-echo -e "\033[41;1;37m Instalando bibliotecas Python... \033[0m"
-pip3 install --quiet --no-input psutil==7.0.0 mysql-connector-python==9.2.0 unidecode==1.3.8 pynvml==12.0.0 GPUtil==1.4.0  
-
 # instalando mysql
 echo -e "\033[41;1;37m Instalando MYSQL Server... \033[0m"
 sudo apt -qq -y install mysql-server
