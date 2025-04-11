@@ -48,6 +48,10 @@ sudo apt -qq -y install mysql-server
 sudo systemctl start mysql.service
 sudo systemctl enable mysql
 
+echo -e "\033[44;1;37m Configurando MySQL para acesso externo... \033[0m"
+sudo sed -i 's/^bind-address\s=./bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo systemctl restart mysql.service
+
 # Liberar a porta 3306 para qualquer IP
 echo -e "\033[41;1;37m Liberar 3306 do Servidor de Banco... \033[0m"
 sudo iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
