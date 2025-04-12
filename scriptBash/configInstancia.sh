@@ -72,10 +72,8 @@ sudo mysql -e"FLUSH PRIVILEGES;"
 echo -e "\033[41;1;37m Clonando web-data-viz... \033[0m"
 git clone --quiet https://github.com/InfraWatch-inc/web-data-viz.git
 
-# Acessando a pasta da aplicação web
-echo -e "\033[41;1;37m Acessando a pasta do web-data-viz... \033[0m"
-cd ~/InfraWatch/web-data-viz
-
 # configurar e rodar projeto node
 echo -e "\033[41;1;37m Configurando e inicializando web-data-viz... \033[0m"
-npm i && npm audit fix && npm start
+npm --prefix ./web-data-viz install
+npm --prefix ./web-data-viz audit fix
+npm --prefix ./web-data-viz start
