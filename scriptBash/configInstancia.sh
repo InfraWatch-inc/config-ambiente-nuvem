@@ -31,20 +31,16 @@ sudo apt -qq -y install mysql-server
 sudo systemctl start mysql.service
 sudo systemctl enable mysql
 
-echo -e "\033[44;1;37m Configurando MySQL para acesso externo... \033[0m"
-sudo sed -i 's/^bind-address\s=./bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
-sudo systemctl restart mysql.service
-
 # Liberar a porta 3306 para qualquer IP
 echo -e "\033[41;1;37m Liberar 3306 do Servidor de Banco... \033[0m"
 sudo iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
 
 # Salvar as regras de iptables
-sudo apt-get update
+sudo apt-get -y update
 sudo apt-get install -y iptables-persistent
 
-sudo netfilter-persistent save
-sudo netfilter-persistent reload
+sudo netfilter-persistent -y save
+sudo netfilter-persistent -y reload
 
 # configurando MYSQL
 echo -e "\033[41;1;37m Criando e estruturando BD infrawatch... \033[0m"
@@ -71,6 +67,10 @@ sudo mysql -e"FLUSH PRIVILEGES;"
 sudo mysql -e"CREATE USER 'delete_user'@'%' IDENTIFIED BY 'Urubu100#';"
 sudo mysql -e"GRANT DELETE ON infrawatch.* TO 'delete_user'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
+
+# Clonando aplicação web
+echo -e "\033[41;1;37m Clonando web-data-viz... \033[0m"
+git clone --quiet https://github.com/InfraWatch-inc/web-data-viz.git
 
 # Acessando a pasta da aplicação web
 echo -e "\033[41;1;37m Acessando a pasta do web-data-viz... \033[0m"
