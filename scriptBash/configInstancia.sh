@@ -13,6 +13,9 @@
 # os q's são de quiet (silencio) para mostrar menos texto (por mais q monstre uma porrada ainda assim)
 # e os y's são para não ficar fazendo perguntas no meio dos comandos
 
+echo -e "\033[41;1;37m Indo ao local correto... \033[0m"
+cd ~/InfraWatch
+
 # Atualizar a máquina
 echo -e "\033[41;1;37m Atualizando Sistema... \033[0m"
 sudo apt update -qq -y
@@ -71,7 +74,7 @@ sudo mysql -e"FLUSH PRIVILEGES;"
 
 # Acessando a pasta da aplicação web
 echo -e "\033[41;1;37m Acessando a pasta do web-data-viz... \033[0m"
-cd web-data-viz
+cd web-data-viz/
 
 # configurar e rodar projeto node
 echo -e "\033[41;1;37m Configurando e inicializando web-data-viz... \033[0m"
