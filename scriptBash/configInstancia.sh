@@ -14,7 +14,7 @@
 # e os y's são para não ficar fazendo perguntas no meio dos comandos
 
 echo -e "\033[41;1;37m Indo ao local correto... \033[0m"
-cd ~/InfraWatch
+cd ~/infraWatch
 
 # Atualizar a máquina
 echo -e "\033[41;1;37m Atualizando Sistema... \033[0m"
@@ -25,11 +25,29 @@ sudo apt upgrade -qq -y
 echo -e "\033[41;1;37m  Instalando NodeJS... \033[0m" # formatacao de texto vermelho pra deixar destacado
 sudo apt install -qq -y nodejs npm
 
-# instalando mysql
-echo -e "\033[41;1;37m Instalando MYSQL Server... \033[0m"
-sudo apt -qq -y install mysql-server
-sudo systemctl start mysql.service
-sudo systemctl enable mysql
+# instalando Docker
+echo -e "\033[41;1;37m Instalando Docker... \033[0m"
+sudo bash ~/infraWatch/config-ambiente-nuvem/scriptBash/scriptDocker.sh 
+
+# Ativando serviços do docker
+echo -e "\033[41;1;37m Ativando serviços do docker... \033[0m"
+exit
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Baixando imagen do Mysql
+echo -e "\033[41;1;37m Baixando imagen do Mysql... \033[0m"
+sudo docker pull mysql:8.2 
+
+# Criando conteiner
+echo -e "\033[41;1;37m Criando conteiner e iniciando... \033[0m"
+sudo docker run -d -p 3000:3306 --name db -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:8.2 
+
+# Entrando no conteiner.
+echo -e "\033[41;1;37m Acessando o conteiner... \033[0m"
+sudo docker exec –it db bash
+
+
 
 # Liberar a porta 3306 para qualquer IP
 echo -e "\033[41;1;37m Liberar 3306 do Servidor de Banco... \033[0m"
