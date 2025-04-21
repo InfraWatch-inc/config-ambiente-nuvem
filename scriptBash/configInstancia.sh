@@ -27,7 +27,7 @@ sudo apt install -qq -y nodejs npm
 
 # instalando Docker
 echo -e "\033[41;1;37m Instalando Docker... \033[0m"
-sudo bash ~/infraWatch/config-ambiente-nuvem/scriptBash/scriptDocker.sh 
+sudo bash config-ambiente-nuvem/scriptBash/scriptDocker.sh 
 
 # Ativando serviços do docker
 echo -e "\033[41;1;37m Ativando serviços do docker... \033[0m"
@@ -39,19 +39,22 @@ sudo systemctl enable docker
 echo -e "\033[41;1;37m Baixando imagen do Mysql... \033[0m"
 sudo docker pull mysql:8.2 
 
-# Criando conteiner
+# Criando conteiner 
 echo -e "\033[41;1;37m Criando conteiner e iniciando... \033[0m"
 sudo docker run -d -p 3000:3306 --name db -e "MYSQL_ROOT_PASSWORD=urubu100" mysql:8.2 
 
+# Clonando o repositório database 
+echo -e "\033[41;1;37m Clonando o repositório databsae... \033[0m"
+git clone https://github.com/InfraWatch-inc/database.git
+
 # Entrando no conteiner.
-echo -e "\033[41;1;37m Acessando o conteiner... \033[0m"
-sudo docker exec –it db bash
+echo -e "\033[41;1;37m Enviando o script sql para o container... \033[0m"
+sudo docker cp database/script.sql db:/var/lib/docker/db
 
+# Executando o script sql
+echo -e "\033[41;1;37m Executando o script do banco de dados, criando e estruturando BD... \033[0m"
+docker exec -i db mysql -u root -p "urubu100" < /tmp/arquivo.sql
 
-
-# Liberar a porta 3306 para qualquer IP
-echo -e "\033[41;1;37m Liberar 3306 do Servidor de Banco... \033[0m"
-sudo iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
 
 # Salvar as regras de iptables
 sudo apt-get -y update
@@ -60,9 +63,21 @@ sudo apt-get install -y iptables-persistent
 sudo netfilter-persistent -y save
 sudo netfilter-persistent -y reload
 
-# configurando MYSQL
-echo -e "\033[41;1;37m Criando e estruturando BD infrawatch... \033[0m"
-sudo mysql < ~/InfraWatch-inc/database/script.sql
+# Acessar o docker
+echo -e "\033[41;1;37m Entrando no conteiner... \033[0m"
+sudo docker -it bd bash
+sudo mysql -u infrawatch -p "urubu100"
+
+# 
+
+# Liberar a porta 3306 para qualquer IP
+# echo -e "\033[41;1;37m Liberar 3306 do Servidor de Banco... \033[0m"
+# sudo iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
+
+
+# # configurando MYSQL
+# echo -e "\033[41;1;37m Criando e estruturando BD infrawatch... \033[0m"
+# sudo mysql < ~/InfraWatch-inc/database/script.sql
 
 # Criar usuários MYSQL
 echo -e "\033[41;1;37m Criando Usuários do Banco... \033[0m"
@@ -85,6 +100,10 @@ sudo mysql -e"FLUSH PRIVILEGES;"
 sudo mysql -e"CREATE USER 'delete_user'@'%' IDENTIFIED BY 'Urubu100#';"
 sudo mysql -e"GRANT DELETE ON infrawatch.* TO 'delete_user'@'%';"
 sudo mysql -e"FLUSH PRIVILEGES;"
+
+# Saindo do conteiner
+echo -e "\033[41;1;37m Saindo do conteiner, para execução do node... \033[0m"
+exit
 
 # Clonando aplicação web
 echo -e "\033[41;1;37m Clonando web-data-viz... \033[0m"
