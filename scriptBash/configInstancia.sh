@@ -49,7 +49,7 @@ git clone https://github.com/InfraWatch-inc/database.git
 
 # Entrando no conteiner.
 echo -e "\033[41;1;37m Enviando o script sql para o container... \033[0m"
-sudo docker cp database/script.sql db:/var/lib/docker/db
+sudo docker cp database/script.sql db:/tmp/script.sql
 
 # Executando o script sql
 echo -e "\033[41;1;37m Executando o script do banco de dados, criando e estruturando BD... \033[0m"
