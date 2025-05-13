@@ -1,0 +1,20 @@
+services:
+  web-data-viz:
+    image: raniersptech/atividade-imagens:site
+    ports:
+      - "3306:3306"
+    networks:
+      - infranet
+    depends_on:
+      - db
+
+  db:
+    image: raniersptech/atividade-imagens:db
+    ports:
+      - "3306:3306"
+    networks:
+      - infranet
+
+networks:
+  infranet:
+    driver: bridge

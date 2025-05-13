@@ -21,4 +21,4 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo usermod -aG docker ubuntu
 newgrp docker
 
-
+docker compose up
