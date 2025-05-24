@@ -13,7 +13,7 @@ sudo apt upgrade -qq -y
 
 # instalando Docker
 echo -e "\033[41;1;37m Instalando Docker... \033[0m"
-sudo bash config-ambiente-nuvem/scriptBash/scriptDocker.sh 
+sudo bash scriptBash/scriptDocker.sh 
 
 # Ativando serviços do docker
 echo -e "\033[41;1;37m Ativando serviços do docker... \033[0m"
