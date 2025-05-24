@@ -1,6 +1,6 @@
 services:
   web-data-viz:
-    image: raniersptech/atividade-imagens:site
+    image: raniersptech/infrawatch:site
     ports:
       - "3306:3306"
     networks:
@@ -9,7 +9,7 @@ services:
       - db
 
   db:
-    image: raniersptech/atividade-imagens:db
+    image: raniersptech/infrawatch:db
     ports:
       - "3306:3306"
     networks:
