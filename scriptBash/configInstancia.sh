@@ -23,4 +23,4 @@ sudo systemctl enable docker
 
 # Iniciar docker compose
 echo -e "\033[41;1;37m Iniciando docker compose... \033[0m"
-sudo docker compose up -d
+docker compose -f scriptBash/compose.yaml up -d
