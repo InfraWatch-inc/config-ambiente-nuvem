@@ -9,7 +9,7 @@ services:
       - db
 
   db:
-    image: raniersptech/infrawatch:bd_1.0
+    image: raniersptech/infrawatch:db_1.1
     ports:
       - "3306:3306"
     networks:
