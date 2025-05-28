@@ -1,6 +1,8 @@
 services:
   web-data-viz:
-    image: raniersptech/infrawatch:site_1.0t
+    image: raniersptech/infrawatch:site_1.2
+    env_file:
+      - ../../web-data-viz/.env
     ports:
       - "8080:8000"
     networks:
@@ -9,7 +11,7 @@ services:
       - db
 
   db:
-    image: raniersptech/infrawatch:db_1.1
+    image: raniersptech/infrawatch:db_1.2
     ports:
       - "3306:3306"
     networks:
